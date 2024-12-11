@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { BASE_URL } from "@/config/accessEnv";
+// import { BASE_URL } from "@/config/accessEnv";
 import { Button } from "../ui/button";
 export type TUserCreate = {
   name: {
@@ -43,7 +43,7 @@ const RegisterForm = () => {
 
       setError({});
 
-      const res = await fetch(`${BASE_URL}/api/user/create`, {
+      const res = await fetch(`/api/user/create`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
