@@ -37,13 +37,14 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
         // Return a success response with the created user
         return NextResponse.json({  user, success:true, message:"Register successfull" }, { status: 201 });
-    } catch (error) {
-              
+    } catch (err) {
+                console.log(err);
+                
         // Return an error response
         return NextResponse.json(
             { 
                 success: false, 
-                message: error instanceof Error ? error.message : error },
+                message: 'wrong' },
             { status: 500 }
         );
     }
