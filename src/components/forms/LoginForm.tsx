@@ -5,8 +5,12 @@ import InputElement from "../elements/InputElement";
 import Link from "next/link";
 
 import { Button } from "../ui/button";
+import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -18,25 +22,12 @@ const LoginForm = () => {
 
     try {
       // setIsLoading(true);
-      //   const res = await signIn("credentials", { ...form, redirect: false });
-      //   console.log(res);
-      //   if (res?.ok) {
-      //     toast.success("Login successfull");
-      //     router.push("/");
-      //   }
-      // const res = await fetch(`${BASE_URL}/api/user/login`, {
-      //   method: "POST",
-      //   headers: {
-      //     "content-type": "Application/json",
-      //   },
-      //   body: JSON.stringify(form),
-      // });
-      // const data = await res.json();
-      // console.log(data);
-      // if (data.success) {
-      //   setIsLoading(false);
-      //   toast.success("Login successfull");
-      // }
+      const res = await signIn("credentials", { ...form, redirect: false });
+      console.log(res);
+      if (res?.ok) {
+        toast.success("Login successfull");
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
